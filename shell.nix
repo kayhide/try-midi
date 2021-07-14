@@ -19,6 +19,7 @@ let
         fluidsynth
         soundfont-fluid
         qsynth
+        overmind
 
         my-nodejs
         my-yarn
