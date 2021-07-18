@@ -10,7 +10,7 @@ function Outputs(props) {
 function Channels(props) {
   const items = Array(16)
     .fill()
-    .map((_, i) => <option value={i}>{i}</option>);
+    .map((_, i) => <option value={i}>{i + 1}</option>);
   return (
     <select
       value={props.value}
@@ -24,7 +24,7 @@ function Channels(props) {
 function KeyWhite(props) {
   return (
     <button
-      className="px-6 py-16 border border-gray-400 rounded bg-gray-100"
+      className="flex-grow border border-gray-400 rounded bg-gray-100"
       onClick={(_) => props.onPlay(props.note)}
     >
       {props.text}
@@ -35,7 +35,7 @@ function KeyWhite(props) {
 function KeyBlack(props) {
   return (
     <button
-      className="w-8 h-36 px-3 py-16 border border-gray-400 rounded bg-gray-700"
+      className="w-8 h-36 border border-gray-400 rounded bg-gray-700"
       onClick={(_) => props.onPlay(props.note)}
     >
       {props.text}
@@ -48,7 +48,7 @@ function Keyboard(props) {
   const play = (note) => (_) => props.onPlay(note);
   return (
     <div className="relative w-96 h-60">
-      <div className="absolute inset-0 grid grid-cols-7 justify-items-stretch">
+      <div className="absolute inset-0 flex">
         <KeyWhite text="" note={base + 0} onPlay={props.onPlay} />
         <KeyWhite text="" note={base + 2} onPlay={props.onPlay} />
         <KeyWhite text="" note={base + 4} onPlay={props.onPlay} />
@@ -57,13 +57,16 @@ function Keyboard(props) {
         <KeyWhite text="" note={base + 9} onPlay={props.onPlay} />
         <KeyWhite text="" note={base + 11} onPlay={props.onPlay} />
       </div>
-      <div className="absolute inset-x-0 px-8 grid grid-cols-6 justify-items-center">
-        <KeyBlack text="" note={base + 1} onPlay={props.onPlay} />
-        <KeyBlack text="" note={base + 3} onPlay={props.onPlay} />
-        <div />
-        <KeyBlack text="" note={base + 6} onPlay={props.onPlay} />
-        <KeyBlack text="" note={base + 8} onPlay={props.onPlay} />
-        <KeyBlack text="" note={base + 10} onPlay={props.onPlay} />
+      <div className="absolute inset-x-0 pl-0 grid grid-cols-7 justify-items-center">
+        <div className="col-span-3 w-full flex justify-evenly">
+          <KeyBlack text="" note={base + 1} onPlay={props.onPlay} />
+          <KeyBlack text="" note={base + 3} onPlay={props.onPlay} />
+        </div>
+        <div className="col-span-4 w-full flex justify-evenly">
+          <KeyBlack text="" note={base + 6} onPlay={props.onPlay} />
+          <KeyBlack text="" note={base + 8} onPlay={props.onPlay} />
+          <KeyBlack text="" note={base + 10} onPlay={props.onPlay} />
+        </div>
       </div>
     </div>
   );
